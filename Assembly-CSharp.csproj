@@ -71,6 +71,7 @@
     <Compile Include="Assets\Scripts\OnClick.cs" />
     <Compile Include="Assets\Scripts\Scoring.cs" />
     <Compile Include="Assets\Scripts\Start.cs" />
+    <Compile Include="Assets\Scripts\StayOnScreen.cs" />
     <Compile Include="Assets\Scripts\Timer.cs" />
     <Compile Include="Assets\Scripts\UIButtons.cs" />
     <Reference Include="UnityEngine">
