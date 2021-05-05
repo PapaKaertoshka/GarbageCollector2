@@ -67,6 +67,7 @@
     <Compile Include="Assets\Scripts\Comparing.cs" />
     <Compile Include="Assets\Scripts\GrabUP.cs" />
     <Compile Include="Assets\Scripts\Instantiiating.cs" />
+    <Compile Include="Assets\Scripts\ItemBehaviour.cs" />
     <Compile Include="Assets\Scripts\ItemsDestroing.cs" />
     <Compile Include="Assets\Scripts\OnClick.cs" />
     <Compile Include="Assets\Scripts\Scoring.cs" />

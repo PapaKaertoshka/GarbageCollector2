@@ -5,7 +5,8 @@ using UnityEngine.UI;
 
 public class Comparing : MonoBehaviour
 {
-	public int lay, score;
+	public int score;
+	public LayerMask layer;
 	public Text wrong;
 	private IEnumerator SetText()
 	{
@@ -15,15 +16,15 @@ public class Comparing : MonoBehaviour
 	}
 	void OnCollisionEnter(Collision other)
 	{
-		if (other.gameObject.layer == lay)
+		if (Mathf.Pow(2, other.gameObject.layer) == layer.value)
 		{
 			score++;
+			Destroy(other.gameObject);
 		}
 		else
 		{
 			StartCoroutine(SetText());
-			score--;
+			other.gameObject.GetComponent<ItemBehaviour>()?.ReturnToPosition();
 		}
-		Destroy(other.gameObject);
 	}
 }

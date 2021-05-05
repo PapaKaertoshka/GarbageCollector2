@@ -25,12 +25,13 @@ public class GrabUP : MonoBehaviour
 					objectToGrab = hit.transform;
 					objectToGrab.GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);
 					objectToGrab.GetComponent<Rigidbody>().useGravity = false;
+					objectToGrab.GetComponent<ItemBehaviour>()?.SavePosition();
 				}
 			}
 			if (objectToGrab)
 			{
 				Vector3 mousePosition = _camera.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, _camera.transform.position.y));
-				objectToGrab.GetComponent<Rigidbody>().MovePosition(new Vector3(mousePosition.x, 14f, mousePosition.z));
+				objectToGrab.GetComponent<Rigidbody>().MovePosition(new Vector3(mousePosition.x, 25f, mousePosition.z));
 				objectToGrab.DORotate(Quaternion.identity.eulerAngles, 1.5f, RotateMode.Fast);
 			}
 		}
