@@ -68,6 +68,7 @@
     <Compile Include="Assets\Scripts\GrabUP.cs" />
     <Compile Include="Assets\Scripts\Instantiiating.cs" />
     <Compile Include="Assets\Scripts\ItemBehaviour.cs" />
+    <Compile Include="Assets\Scripts\ScoreUpdate.cs" />
     <Compile Include="Assets\Scripts\Scoring.cs" />
     <Compile Include="Assets\Scripts\Start.cs" />
     <Compile Include="Assets\Scripts\Timer.cs" />

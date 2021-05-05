@@ -27,6 +27,7 @@ public class GrabUP : MonoBehaviour
 						objectToGrab = hit.transform;
 						objectRigidbody = objectToGrab.GetComponent<Rigidbody>();
 						objectRigidbody.useGravity = false;
+						objectRigidbody.velocity = Vector3.zero;
 						objectToGrab.GetComponent<ItemBehaviour>().SavePosition();
 					}
 				}

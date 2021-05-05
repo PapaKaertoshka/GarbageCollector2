@@ -10,8 +10,6 @@ public class Timer : MonoBehaviour
 {
     [SerializeField] private UnityEvent OnGameEnd;
     [SerializeField] private Text timerText;
-    [SerializeField] private Text scoreText;
-    public GameObject scoreTxt;
     public int levelDuration = 20;
     private int timePassed = 0;
     private const string TimerString = "Time: ";
@@ -28,6 +26,5 @@ public class Timer : MonoBehaviour
             timePassed++;
         }
         OnGameEnd?.Invoke();
-        scoreText.text = "Your score: " + scoreTxt.GetComponent<Scoring>().score;
     }
 }
