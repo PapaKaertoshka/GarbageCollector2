@@ -4,22 +4,12 @@ using UnityEngine;
 
 public class Instantiiating : MonoBehaviour
 {
-    [SerializeField]
-    GameObject[] objects;
-    public GameObject wall, wall2;
-    private IEnumerator SpawnCubes()
+    [SerializeField] GameObject[] objects;
+    void Start()
     {
         for (int i = 0; i < objects.Length; i++)
         {
-
-            Instantiate(objects[i], transform.position, Quaternion.identity);
+            Instantiate(objects[i], transform.position, Quaternion.identity, transform);
         }
-        yield return new WaitForSeconds(2f);
-        wall.SetActive(false);
-        wall2.SetActive(false);
-    }
-    void Start()
-    {
-        StartCoroutine(SpawnCubes());
     }
 }

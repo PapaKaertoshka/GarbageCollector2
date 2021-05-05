@@ -4,28 +4,27 @@ using System.Text;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Events;
+
 public class Timer : MonoBehaviour
 {
-    public GameObject endGame, scoreTxt;
-    [SerializeField]
-    private Text txt, score;
-    private int _seconds = 20;
-    private const string TimerString = "Time:";
-    private IEnumerator Time()
-    {
-        var waiter = new WaitForSeconds(1);
-        while (_seconds >= 0)
-        {
-            yield return waiter;
-
-            txt.text = TimerString + _seconds;
-            _seconds--;
-        }
-        endGame.SetActive(true);
-        score.text = "Your score: " + scoreTxt.GetComponent<Scoring>().score;
-    }
+    [SerializeField] private UnityEvent OnGameEnd;
+    [SerializeField] private Text timerText;
+    public int levelDuration = 20;
+    private int timePassed = 0;
+    private const string TimerString = "Time: ";
     void Start()
     {
-        StartCoroutine(Time());
+        StartCoroutine(TimeCountdown());
+    }
+    private IEnumerator TimeCountdown()
+    {
+        while (timePassed <= levelDuration)
+        {
+            yield return new WaitForSeconds(1);
+            timerText.text = TimerString + (levelDuration - timePassed);
+            timePassed++;
+        }
+        OnGameEnd?.Invoke();
     }
 }

@@ -4,47 +4,45 @@ using DG.Tweening;
 
 public class GrabUP : MonoBehaviour
 {
-	Quaternion originRotation;
-	public Camera _camera;
-	public float step = 5; // шаг для изменения высоты в 3D
-	private Transform curObj;
-	private float mass;
-	void FixedUpdate()
-	{
+	private Camera _camera;
+	private Transform objectToGrab;
+	private new Rigidbody objectRigidbody;
 
+    private void Start()
+    {
+		_camera = Camera.main;
+    }
+
+    void FixedUpdate()
+	{
 		if (Input.GetMouseButton(0))
 		{
-			Quaternion rotationY = Quaternion.AngleAxis(30, Vector3.up);
-			Quaternion rotationX = Quaternion.AngleAxis(-30, Vector3.right);
-			RaycastHit hit;
-			Ray ray = _camera.ScreenPointToRay(Input.mousePosition);
-				if (Physics.Raycast(ray, out hit))
+			if (!objectToGrab)
+			{
+				Ray ray = _camera.ScreenPointToRay(Input.mousePosition);
+				if (Physics.Raycast(ray, out RaycastHit hit))
 				{
-					if ( hit.rigidbody && !curObj)
+					if (hit.rigidbody && !objectToGrab)
 					{
-						curObj = hit.transform;
-						mass = curObj.GetComponent<Rigidbody>().mass;
-						curObj.GetComponent<Rigidbody>().velocity = new Vector3(0,0,0);
-						curObj.GetComponent<Rigidbody>().useGravity = false;
+						objectToGrab = hit.transform;
+						objectRigidbody = objectToGrab.GetComponent<Rigidbody>();
+						objectRigidbody.useGravity = false;
+						objectRigidbody.velocity = Vector3.zero;
+						objectToGrab.GetComponent<ItemBehaviour>().SavePosition();
 					}
 				}
-
-				if (curObj)
-				{
-					Vector3 mousePosition = _camera.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, _camera.transform.position.y));
-					curObj.GetComponent<Rigidbody>().MovePosition(new Vector3(mousePosition.x, 14f, mousePosition.z));
-					curObj.DORotate(Quaternion.identity.eulerAngles, 1.5f, RotateMode.Fast);
+			}
+			else
+			{
+				Vector3 mousePosition = _camera.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, _camera.transform.position.y));
+				objectToGrab.GetComponent<Rigidbody>().MovePosition(new Vector3(mousePosition.x, 25f, mousePosition.z));
 			}
 		}
-		else if (curObj)
+		else if (objectToGrab)
 		{
-			if (curObj.GetComponent<Rigidbody>())
-			{
-				curObj.rotation = Quaternion.identity;
-				curObj.GetComponent<Rigidbody>().useGravity = true;
-				curObj.GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);
-			}
-			curObj = null;
+			objectRigidbody.useGravity = true;
+			objectToGrab = null;
+			objectRigidbody = null;
 		}
 	}
 }
