@@ -5,16 +5,11 @@ using UnityEngine;
 public class Instantiiating : MonoBehaviour
 {
     [SerializeField] GameObject[] objects;
-    private IEnumerator SpawnCubes()
+    void Start()
     {
         for (int i = 0; i < objects.Length; i++)
         {
-            Instantiate(objects[i], transform.position, Quaternion.identity);
+            Instantiate(objects[i], transform.position, Quaternion.identity, transform);
         }
-        yield return new WaitForSeconds(2f);
-    }
-    void Start()
-    {
-        StartCoroutine(SpawnCubes());
     }
 }
