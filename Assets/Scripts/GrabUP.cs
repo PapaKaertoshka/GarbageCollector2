@@ -35,7 +35,7 @@ public class GrabUP : MonoBehaviour
 			else
 			{
 				Vector3 mousePosition = _camera.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, _camera.transform.position.y));
-				objectToGrab.GetComponent<Rigidbody>().MovePosition(new Vector3(mousePosition.x, 25f, mousePosition.z));
+				objectRigidbody.MovePosition(new Vector3(mousePosition.x, 25f, mousePosition.z));
 			}
 		}
 		else if (objectToGrab)
