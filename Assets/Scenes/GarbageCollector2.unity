@@ -409,7 +409,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   timerText: {fileID: 1101822076}
-  levelDuration: 20
+  levelDuration: 40
 --- !u!4 &73939764
 Transform:
   m_ObjectHideFlags: 0
