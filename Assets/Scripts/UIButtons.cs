@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class UIButtons : MonoBehaviour
 {
+    public GameObject settings;
     public void ExitTheGame()
     {
         Application.Quit();
@@ -20,5 +21,13 @@ public class UIButtons : MonoBehaviour
     public void RestartLevel()
     {
         SceneManager.LoadScene(0);
+    }
+    public void OpenSettings()
+    {
+        settings.SetActive(true);
+    }
+    public void CloseSettings()
+    {
+        settings.SetActive(false);
     }
 }

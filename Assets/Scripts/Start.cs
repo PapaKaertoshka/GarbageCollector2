@@ -11,5 +11,6 @@ public class Start : MonoBehaviour
         player.SetActive(true);
         inGame.SetActive(true);
         mainMenu.SetActive(false);
+        Time.timeScale = 1;
     }
 }
